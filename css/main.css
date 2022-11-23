@@ -1,0 +1,67 @@
+* {
+    margin: 0px;
+    padding: 0px; }
+
+.titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+
+.tarjetas{
+    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.card1{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
+
+.card2{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
+
+.card3{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
+
+.card4{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
+
+.card5{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
+
+.card6{
+    border: 1px solid;
+    height: 400px;
+    width: 600px;
+    padding: 100px;
+    margin: 10px;
+}
