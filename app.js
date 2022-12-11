@@ -1,43 +1,4 @@
-/*
-let nombre = "Santiago";
-let edad = 20;
-let alumno = true;
-
-console.log(nombre);
-console.log(edad);
-console.log(alumno);
-
-const CURSO = "Js";    
-
-console.log(CURSO);
-
-let numero1 = Number(prompt("Ingrese un numero para multiplicar"));
-let numero2 = Number(prompt("Ingrese el otro numero"));
-
-let resultado = numero1 * numero2;
-
-alert("El resultado de su multiplicación es =" + " " +resultado); 
-
-let pais = prompt("Ingrese de que pais eres ⬇️ ⬇️ ⬇️");
-let provincia = prompt("Ingrese de que provincia eres ⬇️ ⬇️ ⬇️");
-
-if (pais != "" && provincia != "") {
-    alert("Usted vive en: " + pais + " 😁" + "   En la provincia de: " + provincia + " 😁");
-} else {
-    alert("Error al ingresar sus datos");
-}
-
-switch (key) {
-    case value:
-        
-        break;
-
-    default:
-        break;
-}
-*/
-
-let productos;
+/*let productos;
 let totalPagar= 0
 let opcionSillaGamer2;
 let opcionSillaErgonomica2;
@@ -60,8 +21,6 @@ let precioSillaDakot = 55000
 
 let productoSillaJMI = "JMI"
 let precioSillaJMI = 52000
-
-
 
 function comprarSillaGamer(){
     opcionSillaGamer2 = parseInt(prompt("ingrese algun modelo 1- Corsair 2- Razer"))
@@ -139,4 +98,87 @@ do{
     }
 }while(opcion!=4)
 
-alert("El total a pagar es: $" + totalPagar)
+alert("El total a pagar es: $" + totalPagar)*/
+let productos;
+let totalPagar= 0
+
+const sillas = [
+    {nombre: "Silla Gamer Corsair", precio : 80000 },
+    {nombre: "Silla Gamer Razer", precio : 100000 },
+    {nombre: "Silla Ergonomica The Game House", precio : 85000 },
+    {nombre: "Silla Ergonomica Silla Vonne", precio : 45000 },
+    {nombre: "Silla de Oficina Dakot", precio : 55000 },
+    {nombre: "Silla de Oficina JMI", precio : 52000 },
+]
+
+let carrito = []
+
+let seleccion = prompt("Bienvenidos! Desea comprar alguna Silla?")
+
+while(seleccion != "si" && seleccion != "no"){
+    alert("Por favor ingrese Si o No")
+    seleccion = prompt("Hola, desea comprar alguna silla?")
+}
+
+if(seleccion == "si"){
+    alert("A continuacion nuestra lista de Sillas disponibles")
+    let sillasDisponibles = sillas.map((silla) => silla.nombre + " " + "$" + silla.precio);
+    alert(sillasDisponibles.join(" - "));
+    }else if(seleccion == "no"){
+        alert("Gracias por su visita, lamentamos no poder ayudarte 😢")
+}
+
+while(seleccion != "no"){
+    let silla = prompt("Agrega una Silla a tu carrito")
+    let precio = 0;
+
+if (silla == "Silla Gamer Corsair" || silla == "Silla Gamer Razer" || silla == "Silla Ergonomica The Game House" || silla == "Silla Ergonomica Silla Vonne" || silla == "Silla de Oficina Dakot" || silla == "Silla de Oficina JMI"){
+    switch(silla){
+        case "Silla Gamer Corsair":
+            precio = 80000
+            break;
+        case "Silla Gamer Razer":
+            precio = 100000
+            break;
+        case "Silla Ergonomica The Game House":
+            precio = 85000 
+            break;
+        case "Silla Ergonomica Silla Vonne":
+            precio = 45000
+            break;
+        case "Silla de Oficina Dakot":
+            precio = 55000
+            break; 
+        case "Silla de Oficina JMI":
+            precio = 52000
+            break;
+}
+let unidades = parseInt(prompt("Cuantas unidades vas a llevar?"))
+
+carrito.push({silla, unidades, precio})
+console.log(carrito)
+} else {
+    alert("No tenemos este producto en stock")
+}
+
+seleccion = prompt("Queres seguir comprando?")
+while (seleccion === "no") {
+    alert("Gracias por la compra")
+    carrito.forEach((carritoFinal) => {
+        console.log(`producto: ${carritoFinal.silla}, unidades: ${carritoFinal.unidades}, Total a pagar por producto: ${carritoFinal.unidades * carritoFinal.precio}`)
+})
+break;
+}}
+
+const sillagamer = productos.filter((productos) => productos.nombre.includes ("Silla Gamer")) ;
+console.log(sillagamer);
+
+const sillaergonomica = productos.filter((productos) => productos.nombre.includes ("Silla Ergonomica")) ;
+console.log(sillaergonomica);
+
+const sillaoficina = productos.filter((productos) => productos.nombre.includes ("Silla de Oficina")) ;
+console.log(sillaoficina);
+
+const totalCarrito = sillas.reduce((acumulador,producto) => acumulador + producto.precio, 0)
+console.log(totalCarrito);
+alert(`El total a pagar es de: ${total}`);
