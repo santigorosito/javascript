@@ -272,7 +272,7 @@ const activarClickBotonesAdd = ()=> {
 cargarProductos(sillas)
 activarClickBotonesAdd()
 
-const buscarMoto = (codigo)=> sillas.find(sillas => sillas.codigo === parseInt(codigo))
+const buscarSilla = (codigo)=> sillas.find(sillas => sillas.codigo === parseInt(codigo))
 
 function comprar() {
     let codigo = prompt(mensajeInicial)
@@ -280,7 +280,7 @@ function comprar() {
             alert("Código ingresado erróneo")
             return 
         }
-        let sillaElegida = buscarMoto(codigo)
+        let sillaElegida = buscarSillagit (codigo)
             carrito.push(sillaElegida)
         let respuesta = confirm("¿Quieres comprar otra silla?")
         if (respuesta) {
