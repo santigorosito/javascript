@@ -139,7 +139,7 @@ do{
     }
 }while(opcion!=4)
 
-alert("El total a pagar es: $" + totalPagar)*/
+alert("El total a pagar es: $" + totalPagar)
 
 let productos;
 let totalPagar= 0
@@ -223,4 +223,81 @@ console.log(sillaoficina);
 
 const totalCarrito = sillas.reduce((acumulador,producto) => acumulador + producto.precio, 0)
 console.log(totalCarrito);
-alert(`El total a pagar es de: ${total}`);
+alert(`El total a pagar es de: ${total}`); */
+
+const tbody = document.querySelector("tbody")
+
+//Carrito con LocalStorage+JSON
+const carrito = []
+const guardarCarrito = ()=> (carrito.length > 0) && localStorage.setItem("CarritoSillas", JSON.stringify(carrito))
+const recuperarCarrito = ()=> JSON.parse(localStorage.getItem("CarritoSillas")) || []
+carrito.push(...recuperarCarrito())
+
+//Arma Tabla HTML Dinámica
+const armarTablaHTML = (sillas)=> {
+    return `<tr>
+                <td><h3>${sillas.imagen}</h3></td>
+                <td>${sillas.nombre}</td>
+                <td>$ ${sillas.precio}</td>
+                <td>
+                    <button id="${sillas.codigo}" class="button button-outline" title="Agregar al carrito">🛒</button>
+                </td>
+            </tr>`
+}
+
+//Carga productos
+
+const cargarProductos = (array)=> {
+    let tablaHTML = ""
+        if (array.length > 0) {
+            array.forEach((sillas) => tablaHTML += armarTablaHTML(sillas))
+        } else {
+            tablaHTML = "<h2 class='error-sillas'>Error al cargar productos.</h2>"
+        }
+        tbody.innerHTML = tablaHTML
+}
+
+//Activa CLICK
+const activarClickBotonesAdd = ()=> {
+    const botonesAdd = document.querySelectorAll("button.button.button-outline")
+        botonesAdd.forEach(btn => {
+            btn.addEventListener("click", (e)=> {
+                let resultado = buscarSilla(e.target.id)
+                    carrito.push(resultado)
+                    guardarCarrito()
+            })
+        })
+}
+
+cargarProductos(sillas)
+activarClickBotonesAdd()
+
+const buscarMoto = (codigo)=> sillas.find(sillas => sillas.codigo === parseInt(codigo))
+
+function comprar() {
+    let codigo = prompt(mensajeInicial)
+        if (!parseInt(codigo)) {
+            alert("Código ingresado erróneo")
+            return 
+        }
+        let sillaElegida = buscarMoto(codigo)
+            carrito.push(sillaElegida)
+        let respuesta = confirm("¿Quieres comprar otra silla?")
+        if (respuesta) {
+            comprar()
+        } else {
+            finalizarCompra()
+        }
+}
+
+function verCarrito() {
+    if (carrito.length > 0) {
+        const shopping = new Compra(carrito)
+        alert(`El costo total es de $ ${shopping.obtenerSubtotal()}`)
+    } else {
+        alert("No hay productos en el carrito!")
+    }
+}
+
+const btnVerCarrito = document.querySelector("button#verCarrito")
+btnVerCarrito.addEventListener("click", verCarrito)

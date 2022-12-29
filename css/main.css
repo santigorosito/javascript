@@ -1,67 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css");
+
 * {
-    margin: 0px;
-    padding: 0px; }
-
-.titulo{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     margin: 10px;
 }
 
-.tarjetas{
-    display: inline-block;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 10px;
+main {
+    background-color: #769a6961;
+    padding: 10px;
 }
 
-.card1{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+footer {
+    background-color:lightslategray;
+    color: azure;
+    font-weight: 700;
+    padding: 10px;
 }
 
-.card2{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+hr{
+    border-top: 2px solid orange !important;
 }
 
-.card3{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+.div-cotizar{
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
 }
 
-.card4{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+.error-sillas{
+    padding: 20px;
+    text-align: center;
+    background-color: orangered;
+    color: whitesmoke;
+    border-radius: 12px;
 }
 
-.card5{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+button.button.button-outlin{
+    font-size: x-large !important;
 }
 
-.card6{
-    border: 1px solid;
-    height: 400px;
-    width: 600px;
-    padding: 100px;
-    margin: 10px;
+button.button.button-outline:active{
+    background: pink !important;
 }
