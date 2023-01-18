@@ -223,7 +223,7 @@ console.log(sillaoficina);
 
 const totalCarrito = sillas.reduce((acumulador,producto) => acumulador + producto.precio, 0)
 console.log(totalCarrito);
-alert(`El total a pagar es de: ${total}`); */
+alert(`El total a pagar es de: ${total}`); 
 
 const tbody = document.querySelector("tbody")
 
@@ -300,4 +300,179 @@ function verCarrito() {
 }
 
 const btnVerCarrito = document.querySelector("button#verCarrito")
-btnVerCarrito.addEventListener("click", verCarrito)
+btnVerCarrito.addEventListener("click", verCarrito)*/
+
+const productos = [
+    // SILLAS GAMERS
+    {
+        id: "silla gamer-01",
+        titulo: "Silla Gamer Corsair 01",
+        imagen: "./imagenes/SillaGamer/01.jpg",
+        categoria: {
+            nombre: "Silla Gamer Corsair",
+            id: "silla-gamer"
+        },
+        precio: 80000
+    },
+    {
+        id: "silla gamer-02",
+        titulo: "Silla Gamer Razer 02",
+        imagen: "./imagenes/SillaGamer/02.jpg",
+        categoria: {
+            nombre: "Silla Gamer Razer",
+            id: "silla-gamer"
+        },
+        precio: 100000
+    },
+    {
+        id: "silla gamer-03",
+        titulo: "Silla Gamer Xtrike Rgb Led 03",
+        imagen: "./imagenes/SillaGamer/03.jpg",
+        categoria: {
+            nombre: "Silla Gamer Xtrike Rgb Led",
+            id: "silla-gamer"
+        },
+        precio: 205000
+    },
+    // SILLAS DE OFICINA
+    {
+        id: "silla de oficina-01",
+        titulo: "Silla de Oficina Dakot 01",
+        imagen: "./imagenes/SillaOficina/01.jpg",
+        categoria: {
+            nombre: "Silla de Oficina Dakot",
+            id: "silla-de-oficina"
+        },
+        precio: 55000
+    },
+    {
+        id: "silla de oficina-02",
+        titulo: "Silla de Oficina JMI 02",
+        imagen: "./imagenes/SillaOficina/02.jpg",
+        categoria: {
+            nombre: "Silla de Oficina JMI",
+            id: "silla-de-oficina"
+        },
+        precio: 52000
+    },
+    {
+        id: "silla de oficina-03",
+        titulo: "Sillon Ejecutivo de Oficina 03",
+        imagen: "./imagenes/SillaOficina/03.jpg",
+        categoria: {
+            nombre: "Sillon Ejecutivo de Oficina",
+            id: "silla-de-oficina"
+        },
+        precio: 60000
+    },
+    // SILLAS ERGONOMICAS
+    {
+        id: "silla ergonomica-01",
+        titulo: "Silla Ergonomica The Game House 01",
+        imagen: "./imagenes/SillaErgonomica/01.jpg",
+        categoria: {
+            nombre: "Silla Ergonomica The Game House",
+            id: "silla-ergonomica"
+        },
+        precio: 85000
+    },
+    {
+        id: "silla ergonomica-02",
+        titulo: "Silla Ergonomica Silla Vonne 02",
+        imagen: "./imagenes/SillaErgonomica/02.jpg",
+        categoria: {
+            nombre: "Silla Ergonomica Silla Vonne",
+            id: "silla-ergonomica"
+        },
+        precio: 45000
+    },
+    {
+        id: "silla ergonomica-03",
+        titulo: "Silla Ergonomica Tokio 03",
+        imagen: "./imagenes/SillaErgonomica/03.jpg",
+        categoria: {
+            nombre: "Silla Ergonomica Tokio",
+            id: "silla-ergonomica"
+        },
+        precio: 110000
+    }
+];
+
+
+const contenedorProductos = document.querySelector("#contenedor-productos");
+const botonesCategorias = document.querySelectorAll(".boton-categoria");
+const tituloPrincipal = document.querySelector("#titulo-principal");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const numerito = document.querySelector("#numerito");
+
+
+function cargarProductos(productosElegidos) {
+    contenedorProductos.innerHTML = "";
+    productosElegidos.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <div class="producto-detalles">
+                <h3 class="producto-titulo">${producto.titulo}</h3>
+                <p class="producto-precio">$${producto.precio}</p>
+                <button class="producto-agregar" id="${producto.id}">Agregar</button>
+            </div>
+        `;
+        contenedorProductos.append(div);
+    })
+    actualizarBotonesAgregar();
+}
+
+cargarProductos(productos);
+botonesCategorias.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        botonesCategorias.forEach(boton => boton.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+        if (e.currentTarget.id != "todos") {
+            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
+            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
+            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            cargarProductos(productosBoton);
+        } else {
+            tituloPrincipal.innerText = "Todos los productos";
+            cargarProductos(productos);
+        }
+    })
+});
+
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
+    });
+}
+
+let productosEnCarrito;
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+
+if (productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+} else {
+    productosEnCarrito = [];
+}
+
+function agregarAlCarrito(e) {
+    const idBoton = e.currentTarget.id;
+    const productoAgregado = productos.find(producto => producto.id === idBoton);
+    if(productosEnCarrito.some(producto => producto.id === idBoton)) {
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+        productosEnCarrito[index].cantidad++;
+    } else {
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
+    actualizarNumerito();
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+}
+
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numerito.innerText = nuevoNumerito;
+}
