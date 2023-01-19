@@ -49,9 +49,14 @@ aside {
     justify-content: space-between;
 }
 
-.logo {
+.logo1 {
     font-weight: 400;
     font-size: 1.7rem;
+}
+
+.logo2{
+    font-weight: 200;
+    font-size: 1rem;
 }
 
 
