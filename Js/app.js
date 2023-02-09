@@ -311,7 +311,7 @@ let nombre = prompt("Ingrese su nombre");
 
 console.log("El usuario a ingresado: " + nombre);
 
-alert("Hola !" + " " + nombre + " aca podras comprar lo mejor para tu comodidad");
+alert("Hola!" + " " + nombre + " aca podras comprar lo mejor para tu comodidad! 😄");
 
 class Articulo {
 constructor(codigo, descripcion, precio, imagen) {
@@ -722,7 +722,7 @@ function visualizarCarrito(numArt) {
     }
   } else {
     let poner = document.getElementById("ponerCantidad");
-    poner.innerHTML = `<p>Por Favor colocar cantidad!!!</p>`;
+    poner.innerHTML = `<p>Por Favor colocar cantidad!!! 🙏🏻</p>`;
   }
   subtotal = 0;
 }
