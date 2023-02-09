@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goro Gamer</title>
-    <link rel="shortcut icon" href="./imagenes/silla-de-gamer.png" type="icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Goro gamer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./imagenes/silla-de-gamer.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-    <div class="wrapper">
-        <aside>
-            <header>
-                <h1 class="logo1">GORO GAMER</h1>
-                <h2 class="logo2">Acá vas a encontras las mejores sillas para tu comidad y bien estar!</h2>
-                <div class="silla_logo">
-                    <img src="./imagenes/silla-de-gamer.png" width= 200px alt="Logo">
+    <header class="header fixed-top nav-color">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="./index.html"><img src="./imagenes/silla-de-gamer (3).png" alt="logo silla gamer"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-0 mb-0 p-0 mb-lg-0 margen">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Consejos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Contacto</a>
+                        </li>
+                        <li>
+                            <form class="d-flex container mt-2" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit"><img src="./imagenes/Lupa-buscar.jpg" alt="lupa-buscar"></button>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="#finalPagina"><button onclick="renovarCarrito()"><img class="carrito" src="./imagenes/png-clipart-shopping-cart-shopping-cart.png" alt=""></button></a>
+                        </li>
+                    </ul>
                 </div>
-            </header>
-            <nav>
-                <ul class="menu">
-                    <li>
-                        <button id="todos" class="boton-menu boton-categoria active"><i class="bi bi-hand-index-thumb-fill"></i> Todos los productos</button>
-                    </li>
-                    <li>
-                        <button id="silla-gamer" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Sillas Gamer</button>
-                    </li>
-                    <li>
-                        <button id="silla-de-oficina" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Sillas de Oficina</button>
-                    </li>
-                    <li>
-                        <button id="silla-ergonomica" class="boton-menu boton-categoria"><i class="bi bi-hand-index-thumb"></i> Sillas Ergonomicas</button>
-                    </li>
-                    <li>
-                        <a class="boton-menu boton-carrito" href="./carrito.html">
-                            <i class="bi bi-cart-fill"></i> Carrito <span id="numerito" class="numerito">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <footer>
-                <p class="texto-footer">Goro Gamer</p>
-            </footer>
-        </aside>
-        <main>
-            <h2 class="titulo-principal" id="titulo-principal">Todos los productos</h2>
-            <div id="contenedor-productos" class="contenedor-productos">
             </div>
-        </main>
-    </div>
-    <script src="./Js/app.js"></script>
+        </nav>
+    </header>
+    <main class="main p-3">
+        <h1 id="tituloUno" class="text-center">Sillas</h1>
+        <div class="d-flex flex-wrap justify-content-around" id="catalogo"></div>
+        <div id="finalPagina"></div>        
+        <div id="tituloCarrito"></div>
+        <div id="verCarrito"></div>
+        <div class="total" id="totalCarro"></div>
+        <div class="ponerCant" id="ponerCantidad"></div>
+        <div class="datosC" id="datosCliente"></div>
+        <div class="estado" id="estadoDatos"></div>
+        <div class="botonConfirmarCompra" id="confirmarCompra"></div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/app.js"></script>
 </body>
 </html>
