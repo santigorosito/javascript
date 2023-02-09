@@ -303,7 +303,7 @@ const btnVerCarrito = document.querySelector("button#verCarrito")
 btnVerCarrito.addEventListener("click", verCarrito)*/
 
 function saludar() {
-    console.log("Hola bienvenido a Raquetas FIG!");
+    console.log("Hola bienvenido a Goro Gamer!");
 }
 saludar();
 
@@ -311,7 +311,7 @@ let nombre = prompt("Ingrese su nombre");
 
 console.log("El usuario a ingresado: " + nombre);
 
-alert("Hola !" + " " + nombre + " Somos Fanaticos del tenis y vendemos raquetas para tu gusto");
+alert("Hola !" + " " + nombre + " aca podras comprar lo mejor para tu comodidad");
 
 class Articulo {
 constructor(codigo, descripcion, precio, imagen) {
